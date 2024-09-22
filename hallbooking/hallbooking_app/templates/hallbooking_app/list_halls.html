@@ -1,0 +1,47 @@
+<!-- list_halls.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Available Halls</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'home' %}">Hall Booking</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'check_availability' %}">Check Availability</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'book_hall' %}">Book Hall</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'add_hall' %}">Add Hall</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'list_halls' %}">Available Halls</a></li>
+            </ul>
+        </div>
+    </nav>
+<div class="container mt-4">
+    <h2 class="text-center">Available Halls</h2>
+
+    {% if halls %}
+    <div class="row">
+        {% for hall in halls %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ hall.name }}</h5>
+                    <p class="card-text"><strong>Location:</strong> {{ hall.location }}</p>
+                    <p class="card-text"><strong>Capacity:</strong> {{ hall.capacity }}</p>
+                    <p class="card-text"><strong>Amenities:</strong> {{ hall.amenities }}</p>
+                    <p class="card-text"><strong>Description:</strong> {{ hall.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No halls available.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>
