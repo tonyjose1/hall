@@ -61,18 +61,11 @@ def add_hall(request):
 #         return render(request, 'hallbooking_app/book_hall.html', {'halls': halls})
 
 
-
-from django.shortcuts import render
-from .models import Booking
-
 def check_availability(request):
     bookings = Booking.objects.select_related('hall', 'user_contact').all()  # Fetch all bookings with related hall and user
     return render(request, 'hallbooking_app/check_availability.html', {'bookings': bookings})
 
-from django.shortcuts import render, redirect
-from django.urls import reverse
-from django.contrib import messages
-from .models import UserContact, Booking, Hall
+
 
 # def book_hall(request):
 #     if request.method == 'POST':
@@ -168,7 +161,6 @@ from .models import UserContact, Booking, Hall
 #     halls = Hall.objects.all()  # Get all halls for dropdown
 #     return render(request, 'hallbooking_app/book_hall.html', {'halls': halls})
 
-from django.contrib import messages
 
 def book_hall(request):
     if request.method == 'POST':
